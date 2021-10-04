@@ -1,17 +1,8 @@
-import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom';
-
+import React from 'react'
 import LogIn from './LogIn'
 import Registration from './Registration'
 
 function Intro() {
-
-    // const history = useHistory()
-
-    // useEffect(() => {
-    //     history.push('/')
-    // }, [])
-
 
     return (
         <main className="mt-4" style={{height: (window.innerWidth <= 990 ? '150vh' : '115vh')}}>

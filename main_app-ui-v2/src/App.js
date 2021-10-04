@@ -12,7 +12,7 @@ import Lk from './components/PersonalArea/Lk';
 
 function App() {
 
-  const history = useHistory()
+  // const history = useHistory()
 
   return (
     <div className="App">

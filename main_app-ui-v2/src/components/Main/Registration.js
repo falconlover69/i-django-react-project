@@ -41,19 +41,19 @@ function Registration() {
                         </div>
 
                         <div className="mb-3">
-                            <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                            <input type="email" className="form-control" onChange={(e) => setUser({ ...user, email: e.target.value})} id="exampleInputEmail1" aria-describedby="emailHelp" name="email" />
+                            <label htmlFor="exampleInputEmail2" className="form-label">Email address</label>
+                            <input type="email" className="form-control" onChange={(e) => setUser({ ...user, email: e.target.value})} id="exampleInputEmail2" aria-describedby="emailHelp" name="email" />
                             <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                         </div>
 
                         <div className="mb-3">
-                            <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                            <input type="password" autoComplete="on" onChange={(e) => setUser({ ...user, password1: e.target.value})} className="form-control" id="exampleInputPassword1" name="password1"/>
+                            <label htmlFor="InputPassword1" className="form-label">Password</label>
+                            <input type="password" autoComplete="on" onChange={(e) => setUser({ ...user, password1: e.target.value})} className="form-control" id="InputPassword1" name="password1"/>
                         </div>
 
                         <div className="mb-3">
                             <label htmlFor="exampleInputPassword2" className="form-label">Repeate Password</label>
-                            <input type="password" className="form-control" onChange={(e) => setUser({ ...user, password2: e.target.value})} id="exampleInputPassword2" name="password2"/>
+                            <input type="password" autoComplete="on" className="form-control" onChange={(e) => setUser({ ...user, password2: e.target.value})} id="exampleInputPassword2" name="password2"/>
                             
                         </div>
 

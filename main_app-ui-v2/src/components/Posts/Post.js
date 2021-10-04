@@ -10,7 +10,7 @@ function Post({post, ratingListHandler, deletePost, postIndex, isAdmin, changePo
 
     const ratingHandler = (name, event) => {
 
-        if(name == 'like') {
+        if(name === 'like') {
             setLikeToggle(!likeToggle)
             event.target.style.color =  likeToggle ? '#ff0000' : '#000000'
 

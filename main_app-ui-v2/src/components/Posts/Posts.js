@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Post from './Post'
 import axios from 'axios'
 import { Consumer } from '../../context'
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 
 
 function Posts() {
@@ -45,7 +45,7 @@ function Posts() {
 
         // console.log(post.likes)
 
-        if (name == 'like'){
+        if (name === 'like'){
             await axios.patch(`http://127.0.0.1:8000/posts-api/posts/${id}/`, like ? {likes: post.likes + 1} : {likes: post.likes - 1}).then(res => {
                 // setLikeToggle(!likeToggle)
                 const date = res.data.created_at.replace(/[a-zа-яё]/gi, ' ')
@@ -139,7 +139,7 @@ function Posts() {
     const searchPost = (postTitle) => {
         setSerchField(postTitle)
 
-        if (postTitle == '') {
+        if (postTitle === '') {
 
         } else {
 
@@ -168,6 +168,7 @@ function Posts() {
     return (
         <main className="container">
             <h2 className="text-center mb-4 mt-4">Посты новостей</h2>
+            <p className="text-muted" style={{position: 'relative', top: '-50px', left: '75%', fontSize: '12px', textDecoration: 'underline'}}>Посты доступны для печати</p>
 
             <div className="row justify-content-center mb-4">
                 <div className="col-lg-6 col-md-12 col-sm-12 ">
@@ -177,7 +178,7 @@ function Posts() {
 
             <div className="d-flex mb-4" style={{width: '68%', marginLeft: '16%'}}>
 
-                { store?.user.username == 'wvita' || store?.user.username == 'greg' ?
+                { store?.user.username === 'wvita' || store?.user.username === 'greg' ?
                     <button className="btn btn-primary flex-fill" data-bs-toggle="modal" data-bs-target="#addPostModal">Добавить пост</button>  
                 : <></> }
 
@@ -191,11 +192,11 @@ function Posts() {
                 {
                     value => {
 
-                        const isAdmin =  value?.user.user?.username == 'wvita' 
+                        const isAdmin =  value?.user.user?.username === 'wvita' 
                         userID = value.user.user?.pk || store?.user.pk
                         console.log(userID)
 
-                        if (serchField.length == 0){
+                        if (serchField.length === 0){
                             return ( 
                                 posts.map((post, index) => (
                                     <Post key={index} postIndex={index} post={post} ratingListHandler={ratingListHandler} deletePost={deletePost} changePost={changePost} isAdmin={isAdmin} />

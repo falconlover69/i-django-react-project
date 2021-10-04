@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import axios from 'axios'
+// import axios from 'axios'
 
 import { Consumer } from '../../context'
 
@@ -31,9 +31,6 @@ function Navbar({match, location}) {
             <Consumer>
                 {value => {
 
-
-                    // console.log(value.user.user.username)
-
                     return (
                         <header>
                             <nav className="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-dark ">
@@ -58,7 +55,7 @@ function Navbar({match, location}) {
                                         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li><a className="dropdown-item" href="http://127.0.0.1:8000/lk">Личный кабинет</a></li>
                                             <li><a className="dropdown-item" href="http://127.0.0.1:8000/api-auth/logout/" onClick={LogOut}>Выйти</a></li>
-                                            {store?.user.username == 'wvita' ? <li><a className="dropdown-item" href="http://127.0.0.1:8000/admin">Панель админа</a></li> : <></>} 
+                                            {store?.user.username === 'wvita' ? <li><a className="dropdown-item" href="http://127.0.0.1:8000/admin">Панель админа</a></li> : <></>} 
                                         </ul>
                                     </div>
                                 </div>

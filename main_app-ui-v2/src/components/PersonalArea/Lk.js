@@ -7,8 +7,8 @@ function Lk() {
     const [tracksLenght, setTracksLenght] = useState(0)
     const [videosLenght, setVideosLenght] = useState(0)
 
-    let isAdmin = JSON.parse(localStorage.getItem('user'))?.user.username == 'wvita'
-    let isEditor = JSON.parse(localStorage.getItem('user'))?.user.username == 'greg'
+    let isAdmin = JSON.parse(localStorage.getItem('user'))?.user.username === 'wvita'
+    let isEditor = JSON.parse(localStorage.getItem('user'))?.user.username === 'greg'
     let token = JSON.parse(localStorage.getItem('user'))?.key
 
     useEffect(  () => {

@@ -6,8 +6,8 @@ function Videos() {
 
 
     const [videos, setVideos] = useState([])
-    const isAdmin = JSON.parse(localStorage.getItem('user')).user.username == 'wvita'
-    const isAEditor = JSON.parse(localStorage.getItem('user')).user.username == 'greg'
+    const isAdmin = JSON.parse(localStorage.getItem('user')).user.username === 'wvita'
+    const isAEditor = JSON.parse(localStorage.getItem('user')).user.username === 'greg'
     const [addForm, setAddForm] = useState('')
     const userId = JSON.parse(localStorage.getItem('user')).user.pk
 

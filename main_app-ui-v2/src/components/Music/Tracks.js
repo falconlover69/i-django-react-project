@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import Track from './Track'
 import axios from 'axios'
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import { Consumer } from '../../context'
 
 function Tracks() {
 
     const history = useHistory()
     const [tracks, setTracks] = useState([])
-    let isAdmin = JSON.parse(localStorage.getItem('user'))?.user.username == 'wvita'
-    // let csrf = document.cookie.split(';')[2].split('=')[1]
-    // console.log(isAdmin)
-    // console.log('COOKES:::', document.cookie.split(';')[2].split('=')[1])
-    // console.log('COOKES@:::', )
+    let isAdmin = JSON.parse(localStorage.getItem('user'))?.user.username === 'wvita'
+    let csrf = document.cookie.split(';')[2].split('=')[1]
+    console.log(isAdmin)
+    console.log('COOKES:::', document.cookie.split(';')[2].split('=')[1])
+    console.log('COOKES@:::', )
 
     let store = JSON.parse(localStorage.getItem('user'))
 
@@ -43,19 +43,19 @@ function Tracks() {
     const deleteTrack = (id ,index) => {
 
         console.log(id, index)
-        // axios.delete(`http://localhost:8000/music-api/tracks/${id}/`, {headers: {'Authorization': 'Token' + ' ' + store.key, 'X-CSRFToken': csrf}})
-        //     .then(res => {
-        //         alert("Трек был успешно удалён 👍")
-        //         console.log(res)
-        //     })
-        //     .catch(err => {
-        //         alert(err)
-        //     })
+        axios.delete(`http://localhost:8000/music-api/tracks/${id}/`, {headers: {'Authorization': 'Token' + ' ' + store.key, 'X-CSRFToken': csrf}})
+            .then(res => {
+                alert("Трек был успешно удалён 👍")
+                console.log(res)
+            })
+            .catch(err => {
+                alert(err)
+            })
 
-        // const newTracks = [...tracks]
-        // newTracks.splice(index, 1)
-        // setTracks(newTracks)
-        // console.log(newTracks)
+        const newTracks = [...tracks]
+        newTracks.splice(index, 1)
+        setTracks(newTracks)
+        console.log(newTracks)
     }
 
     const changeTrack = (trackId, formData, index) => {
@@ -64,23 +64,16 @@ function Tracks() {
         console.log(trackId)
         console.log(index)
 
-        // axios.patch(`http://127.0.0.1:8000/music-api/tracks/${id}/`, formData)
-        //     .then(res => {
-        //         console.log(id)
-
-        //         let newTracks = [...tracks]
-
-        //         let formatedDate = res.data.added_at.replace(/[a-zа-яё]/gi, ' ')
-
-        //         res.data.added_at = formatedDate
-
-        //         newTracks[index] = res.data
-
-        //         setTracks(newTracks)
-
-        //         alert("Трэк был успешно изменён 👍")
-        //     })
-        //     .catch(err => alert(err))
+        axios.patch(`http://127.0.0.1:8000/music-api/tracks/${trackId}/`, formData)
+            .then(res => {
+                let newTracks = [...tracks]
+                let formatedDate = res.data.added_at.replace(/[a-zа-яё]/gi, ' ')
+                res.data.added_at = formatedDate
+                newTracks[index] = res.data
+                setTracks(newTracks)
+                alert("Трэк был успешно изменён 👍")
+            })
+            .catch(err => alert(err))
     }
 
     const addTrack = (id) => {
@@ -103,8 +96,6 @@ function Tracks() {
                 alert(err)
             })
 
-        // console.log(newTrack)
-
     }
 
     return (
@@ -113,7 +104,7 @@ function Tracks() {
 
             <div className="d-flex mb-4" style={{width: '68%', marginLeft: '16%'}}>
 
-                { store?.user.username == 'wvita' || store?.user.username == 'greg' ?
+                { store?.user.username === 'wvita' || store?.user.username === 'greg' ?
                     <button className="btn btn-primary flex-fill" data-bs-toggle="modal" data-bs-target="#addTrackModal">Добавить трек</button>  
                 : <></> }
 
@@ -131,12 +122,6 @@ function Tracks() {
                     )
                 }}
             </Consumer>
-
-            {/* {
-                tracks.map((track, index) => (
-                    <Track key={index} track={track} trackIndex={index} isAdmin={isAdmin} deleteTrack={deleteTrack} changeTrack={changeTrack}/>
-                ))
-            } */}
 
             <br />
             <br />

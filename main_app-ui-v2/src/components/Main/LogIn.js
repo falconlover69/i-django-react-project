@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 
 import { Consumer } from '../../context'
 
@@ -48,7 +48,7 @@ function LogIn() {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                            <input onChange={(e) => setPassword(e.target.value)} type="password"  className="form-control" id="exampleInputPassword1" />
+                            <input onChange={(e) => setPassword(e.target.value)} type="password" autoComplete="on"  className="form-control" id="exampleInputPassword1" />
                         </div>
                         <button type="submit" className="btn btn-primary" >Войти</button>
                     </form>
