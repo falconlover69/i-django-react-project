@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-function Post({post, ratingListHandler, deletePost, postIndex, isAdmin, changePost}) {
+function Post({post, ratingListHandler, deletePost, postIndex, isAdmin, changePost, visual}) {
 
     // console.log(postIndex)
     const [likeToggle, setLikeToggle] = useState(true)
@@ -28,8 +28,8 @@ function Post({post, ratingListHandler, deletePost, postIndex, isAdmin, changePo
             <div className="container">
                 <div className="card  mb-3" style={{width: '70%', margin: 'auto'}}>
                     <div className="card-body">
-                        <p className="lead card-title text-center">{post.title} </p>
-                        <p className="card-text text-center">{post.body}</p>
+                        <p className="lead card-title text-center" style={{fontSize: !visual ? '18px' : '24px'}}>{post.title} </p>
+                        <p className="card-text text-center" style={{fontSize: !visual ? '16px' : '22px'}}>{post.body}</p>
                         <p className="card-text text-end text-muted" style={{position: 'relative', bottom: '-45px', right: '-50%', width: '50%'}}>{post.created_at}</p>
                         <button className="btn far fa-thumbs-up" name="like" onClick={(e) => {ratingHandler(e.target.name, e) }}>  </button> <span>{post.likes}</span>
                         <button className="btn far fa-thumbs-down" name="dislike" onClick={(e) => {ratingHandler(e.target.name, e) }}> </button> <span>{post.dislikes}</span>
@@ -67,6 +67,7 @@ function Post({post, ratingListHandler, deletePost, postIndex, isAdmin, changePo
                             <label className="btn btn-success" data-bs-dismiss="modal" htmlFor="changePostSubmit">Save changes</label>
     
                             <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={() => deletePost(post.id, postIndex)}>Delete</button>
+                            <button type="button" className="btn btn-info" data-bs-dismiss="modal" style={{color: 'white'}} onClick={() => window.print()}>Print</button>
                         </div>
                     </div>
                 </div>

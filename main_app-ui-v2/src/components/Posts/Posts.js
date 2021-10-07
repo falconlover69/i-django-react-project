@@ -168,7 +168,7 @@ function Posts() {
     return (
         <main className="container">
             <h2 className="text-center mb-4 mt-4">Посты новостей</h2>
-            <p className="text-muted" style={{position: 'relative', top: '-50px', left: '75%', fontSize: '12px', textDecoration: 'underline'}}>Посты доступны для печати</p>
+            {/* <p className="text-muted" style={{position: 'relative', top: '-50px', left: '75%', fontSize: '12px', textDecoration: 'underline'}}>Посты доступны для печати</p> */}
 
             <div className="row justify-content-center mb-4">
                 <div className="col-lg-6 col-md-12 col-sm-12 ">
@@ -195,17 +195,19 @@ function Posts() {
                         const isAdmin =  value?.user.user?.username === 'wvita' 
                         userID = value.user.user?.pk || store?.user.pk
                         console.log(userID)
+                        let visual = value.visuallyImpaired
+
 
                         if (serchField.length === 0){
                             return ( 
                                 posts.map((post, index) => (
-                                    <Post key={index} postIndex={index} post={post} ratingListHandler={ratingListHandler} deletePost={deletePost} changePost={changePost} isAdmin={isAdmin} />
+                                    <Post key={index} postIndex={index} post={post} ratingListHandler={ratingListHandler} deletePost={deletePost} changePost={changePost} isAdmin={isAdmin} visual={visual} />
                                 ))
                             )
                         } else {
                             return (
                                 postsForSerch.map((post, index) => (
-                                    <Post key={index} postIndex={index} post={post} ratingListHandler={ratingListHandler} deletePost={deletePost} changePost={changePost} isAdmin={isAdmin} />
+                                    <Post key={index} postIndex={index} post={post} ratingListHandler={ratingListHandler} deletePost={deletePost} changePost={changePost} isAdmin={isAdmin} visual={visual} />
                                 ))
                             )
                         }

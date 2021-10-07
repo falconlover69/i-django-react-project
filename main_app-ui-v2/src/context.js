@@ -9,7 +9,9 @@ export class Provider extends Component {
         user: {},
         setUser: (user) => {
             this.setState({ user })
-        }
+        },
+        visuallyImpaired: false,
+        setVisuallyImpaired: (visualToggle) => {this.setState({visuallyImpaired: visualToggle})},
     }
 
 
