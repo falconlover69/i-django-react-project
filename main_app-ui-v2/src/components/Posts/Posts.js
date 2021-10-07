@@ -114,7 +114,7 @@ function Posts() {
 
     const changePost = (postId, formData, index) => {
 
-        console.log(formData)
+        console.log(postId)
 
         axios.patch(`http://127.0.0.1:8000/posts-api/posts/${postId}/`, formData)
             .then(res => {

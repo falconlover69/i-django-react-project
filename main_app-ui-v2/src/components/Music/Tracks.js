@@ -9,10 +9,10 @@ function Tracks() {
     const history = useHistory()
     const [tracks, setTracks] = useState([])
     let isAdmin = JSON.parse(localStorage.getItem('user'))?.user.username === 'wvita'
-    let csrf = document.cookie.split(';')[2].split('=')[1]
+    // let csrf = document?.cookie.split(';')[2].split('=')[1]
     console.log(isAdmin)
-    console.log('COOKES:::', document.cookie.split(';')[2].split('=')[1])
-    console.log('COOKES@:::', )
+    // console.log('COOKES:::', document.cookie.split(';')[2].split('=')[1])
+    // console.log('COOKES@:::', )
 
     let store = JSON.parse(localStorage.getItem('user'))
 
@@ -43,7 +43,7 @@ function Tracks() {
     const deleteTrack = (id ,index) => {
 
         console.log(id, index)
-        axios.delete(`http://localhost:8000/music-api/tracks/${id}/`, {headers: {'Authorization': 'Token' + ' ' + store.key, 'X-CSRFToken': csrf}})
+        axios.delete(`http://localhost:8000/music-api/tracks/${id}/`, {headers: {'Authorization': 'Token' + ' ' + store.key}})
             .then(res => {
                 alert("Трек был успешно удалён 👍")
                 console.log(res)

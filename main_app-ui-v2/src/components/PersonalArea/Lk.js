@@ -81,6 +81,7 @@ function Lk() {
                                 </div>
                                 <div className="col-md-3">
                                     <p> <b>Роль:</b>   {isAdmin ? 'admin' : 'пользователь' || isEditor ? 'editor' : 'пользователь'}</p>
+                                    <p> <b>Роль:</b>   {isAdmin ? 'admin' : ''} {isEditor ? 'editor' : 'пользователь'}</p>
                                 </div>
                             </div>
                             

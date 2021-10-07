@@ -22,11 +22,17 @@ function Registration() {
                         .then(res => {
                             console.log(res)
                             const data = {
-                                username: username,
+                                user: {
+                                    username,
+                                    email,
+                                },
                                 key: res.data.key
                             }
                             value.setUser(data)
-                            window.location = '/posts'
+                            localStorage.setItem('user', JSON.stringify(data))
+                            setTimeout(() => {
+                                window.location = '/posts'
+                            }, 600)
                         })
                         .catch(err => alert(err))
                 }
