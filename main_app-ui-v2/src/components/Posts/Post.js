@@ -2,7 +2,8 @@ import React, {useState} from 'react'
 
 function Post({post, ratingListHandler, deletePost, postIndex, isAdmin, changePost, visual}) {
 
-    // console.log(postIndex)
+    console.log("POSTINDEX:::",postIndex)
+    console.log("POSTID:::",post.id)
     const [likeToggle, setLikeToggle] = useState(true)
     const [dislikeToggle, setDislikeToggle] = useState(true)
 
