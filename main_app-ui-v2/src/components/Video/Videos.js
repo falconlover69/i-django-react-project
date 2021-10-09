@@ -25,21 +25,33 @@ function Videos() {
 
     },[])
 
-    const chandeVideo = (vidId, index) => {
-        console.log(vidId)
-        console.log(index)
+    const chandeVideo = (vidId, form, idx) => {
+        axios.patch(`http://127.0.0.1:8000/videos-api/videos/${vidId}/`, form)
+            .then(res => {
+                let newVideos = [...videos]
+                newVideos[idx] = res.data
+                setVideos(newVideos)
+                alert('Видео было успешно зменено 👍')
+            })
+            .catch(err => alert(err))
     }
 
     const deleteVideos = (id, idx) => {
-        console.log(id)
-        console.log(idx)
+        axios.delete(`http://127.0.0.1:8000/videos-api/videos/${id}/`)
+            .then(res => {
+                let newVideos = [...videos]
+                newVideos.splice(idx, 1)
+                setVideos(newVideos)
+                alert('Видео было успешно удалено 👍')
+            })
+            .catch(err => alert(err))
     }
 
     const addVideo = (name) => {
         console.log(name)
         axios.post('http://127.0.0.1:8000/videos-api/videos/', {name, by: userId})
             .then(res => {
-                alert('Видко было успешно добавлено 👍')
+                alert('Видео было успешно добавлено 👍')
                 setVideos([...videos, res.data])
             })
             .catch(err => alert(err))

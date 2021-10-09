@@ -164,6 +164,8 @@ function Posts() {
         }
     }
 
+    console.log(posts)
+
 
 
     return (

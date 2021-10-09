@@ -2,12 +2,12 @@ import React, {useState} from 'react'
 
 function Post({post, ratingListHandler, deletePost, postIndex, isAdmin, changePost, visual}) {
 
-    console.log("POSTINDEX:::",postIndex)
-    console.log("POSTID:::",post.id)
     const [likeToggle, setLikeToggle] = useState(true)
     const [dislikeToggle, setDislikeToggle] = useState(true)
 
     const [changeForm, setChangeForm] = useState({title: '', body: ''})
+
+    const storeAdmin = JSON.parse(localStorage.getItem('user')).user.username === 'wvita' || false
 
     const ratingHandler = (name, event) => {
 
@@ -35,7 +35,7 @@ function Post({post, ratingListHandler, deletePost, postIndex, isAdmin, changePo
                         <button className="btn far fa-thumbs-up" name="like" onClick={(e) => {ratingHandler(e.target.name, e) }}>  </button> <span>{post.likes}</span>
                         <button className="btn far fa-thumbs-down" name="dislike" onClick={(e) => {ratingHandler(e.target.name, e) }}> </button> <span>{post.dislikes}</span>
                         {
-                            isAdmin ? <button className="btn btn-dark fas fa-cog" style={{position: 'absolute', top: '20px', left: '88%'}} data-bs-toggle="modal"  data-bs-target={"#postModal" + postIndex}></button> : <></>
+                            isAdmin || storeAdmin ? <button className="btn btn-dark fas fa-cog" style={{position: 'absolute', top: '20px', left: '88%'}} data-bs-toggle="modal"  data-bs-target={"#postModal" + postIndex} ></button> : <></>
                         } 
                     </div>
                 </div>
@@ -46,6 +46,9 @@ function Post({post, ratingListHandler, deletePost, postIndex, isAdmin, changePo
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
+
+                            <h2>{post.id}</h2>
+
                             <h5 className="modal-title" id="exampleModalLabel">Изменение поста</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -57,18 +60,14 @@ function Post({post, ratingListHandler, deletePost, postIndex, isAdmin, changePo
 
                                 <label htmlFor="Name" className="form-label">Post body</label>
                                 <input type="text"  className="form-control" id="body" name="body" placeholder={post.body} onChange={(e) => setChangeForm( {...changeForm, body: e.target.value} )}/>
-
-                                <button type="button" className="btn btn-primary" id="changePostSubmit" style={{visibility: 'hidden'}} onClick={() => changePost(post.id, changeForm, postIndex)} ></button>
-
                             </form>
 
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <label className="btn btn-success" data-bs-dismiss="modal" htmlFor="changePostSubmit">Save changes</label>
-    
-                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={() => deletePost(post.id, postIndex)}>Delete</button>
-                            <button type="button" className="btn btn-info" data-bs-dismiss="modal" style={{color: 'white'}} onClick={() => window.print()}>Print</button>
+                            <button className="btn btn-danger" data-bs-dismiss="modal" onClick={() => deletePost(post.id, postIndex)}>Удалить</button>
+                            <button className="btn btn-info" data-bs-dismiss="modal" style={{color: 'white'}} onClick={() => window.print()}>Печать</button>
+                            <button className='btn btn-success' data-bs-dismiss="modal" onClick={() => changePost(post.id, changeForm, postIndex)}>Созранить</button>
+                            <button className="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
                         </div>
                     </div>
                 </div>
